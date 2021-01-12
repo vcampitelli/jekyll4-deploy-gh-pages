@@ -10,6 +10,8 @@ BUNDLE_BUILD__SASSC=--disable-march-tune-native
 if [[ -n "$JEKYLL_SOURCE" && -d "$JEKYLL_SOURCE" ]]; then
     echo "Changing dir to ${JEKYLL_SOURCE}..."
     cd ${JEKYLL_SOURCE}
+else
+    unset JEKYLL_SOURCE
 fi
 
 echo "Installing gems..."
@@ -23,7 +25,7 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 echo "Publishing..."
 
-if [[ -n "$JEKYLL_SOURCE" && -d "$JEKYLL_SOURCE" ]]; then
+if [[ -n "$JEKYLL_SOURCE" ]]; then
     cd -
 fi
 
