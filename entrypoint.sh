@@ -24,7 +24,7 @@ JEKYLL_ENV=production bundle exec jekyll build
 echo "Publishing..."
 
 if [[ -n "$JEKYLL_SOURCE" && -d "$JEKYLL_SOURCE" ]]; then
-    cd ${GITHUB_WORKSPACE}
+    cd -
 fi
 cd ${DEST}
 
