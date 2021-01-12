@@ -7,6 +7,11 @@ REPO="https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 BRANCH="gh-pages"
 BUNDLE_BUILD__SASSC=--disable-march-tune-native
 
+if [[ -n "$JEKYLL_SOURCE" && -d "$JEKYLL_SOURCE" ]]; then
+    echo "Changing dir to ${JEKYLL_SOURCE}..."
+    cd ${JEKYLL_SOURCE}
+fi
+
 echo "Installing gems..."
 
 bundle config path vendor/bundle
@@ -18,6 +23,9 @@ JEKYLL_ENV=production bundle exec jekyll build
 
 echo "Publishing..."
 
+if [[ -n "$JEKYLL_SOURCE" && -d "$JEKYLL_SOURCE" ]]; then
+    cd ${GITHUB_WORKSPACE}
+fi
 cd ${DEST}
 
 git init
