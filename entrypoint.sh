@@ -26,6 +26,8 @@ echo "Publishing..."
 if [[ -n "$JEKYLL_SOURCE" && -d "$JEKYLL_SOURCE" ]]; then
     cd -
 fi
+
+mkdir -p ${DEST}
 cd ${DEST}
 
 git init
