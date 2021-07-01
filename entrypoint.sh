@@ -21,7 +21,12 @@ bundle install --jobs 4 --retry 3
 
 echo "Building Jekyll site..."
 
-JEKYLL_ENV=production bundle exec jekyll build
+if [ ! -z $YARN_ENV ]; then
+  echo "Installing javascript packages..."
+  yarn
+fi
+
+JEKYLL_ENV=production NODE_ENV=production bundle exec jekyll build
 
 echo "Publishing..."
 
